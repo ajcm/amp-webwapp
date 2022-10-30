@@ -1,0 +1,5 @@
+{
+  "AppSyncApiName": "ampwebwapp",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false
+}

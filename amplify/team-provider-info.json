@@ -12,8 +12,11 @@
       "AmplifyAppId": "d20r9yrkyzq70q"
     },
     "categories": {
-      "auth": {
+      "api": {
         "ampwebwapp": {}
+      },
+      "auth": {
+        "ampwebwapp6aae44fa": {}
       }
     }
   }
