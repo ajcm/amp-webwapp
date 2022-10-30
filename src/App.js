@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Menu, MenuItem, View,TabItem,Tabs, Grid, Card, Link } from '@aws-amplify/ui-react';
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
 import { API } from "aws-amplify";
+
+import VideoList from './components/VideoList'
 
 import {
   Button,
@@ -9,9 +12,10 @@ import {
   Heading,
   Text,
   TextField,
-  View,
+
   withAuthenticator,
 } from "@aws-amplify/ui-react";
+
 import { listNotes } from "./graphql/queries";
 
 import {
@@ -58,54 +62,109 @@ const App = ({ signOut }) => {
 
   return (
     <View className="App">
-      <Heading level={1}>My Notes App</Heading>
-      <View as="form" margin="3rem 0" onSubmit={createNote}>
-        <Flex direction="row" justifyContent="center">
-          <TextField
-            name="name"
-            placeholder="Note Name"
-            label="Note Name"
-            labelHidden
-            variation="quiet"
-            required
-          />
-          <TextField
-            name="description"
-            placeholder="Note Description"
-            label="Note Description"
-            labelHidden
-            variation="quiet"
-            required
-          />
-          <Button type="submit" variation="primary">
-            Create Note
-          </Button>
-        </Flex>
-      </View>
-      <Heading level={2}>Current Notes</Heading>
-      <View margin="3rem 0">
-        {notes.map((note) => (
-          <Flex
-            key={note.id || note.name}
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Text as="strong" fontWeight={700}>
-              {note.name}
-            </Text>
-            <Text as="span">{note.description}</Text>
-            <Button variation="link" onClick={() => deleteNote(note)}>
-              Delete note
-            </Button>
-          </Flex>
-        ))}
-      </View>
-      <Button onClick={signOut}>Sign Out</Button>
+
+
+      <Template/>
+
+
     </View>
   );
 };
 
-export default withAuthenticator(App);
+//export default withAuthenticator(App);
 
-//export default App;
+
+const Template = () => {
+
+  return (
+  <Grid
+    columnGap="0.5rem"
+    rowGap="0.5rem"
+    templateColumns="1fr 1fr 1fr"
+    templateRows="1fr 3fr 1fr"
+  >
+    <Card
+      columnStart="1"
+      columnEnd="-1"
+      backgroundColor={"lightgray"}
+    >
+      <Heading level={1}>My Site</Heading>
+      <NavBar />
+    </Card>
+    
+    <Card
+      columnStart="1"
+      columnEnd="2"
+      backgroundColor={"lightgray"}
+    >
+      Nav
+    </Card>
+    
+    <Card
+      columnStart="2"
+      columnEnd="-1"
+      backgroundColor={"lightgray"}
+    >
+      <VideoList/>
+    </Card>
+    
+    <Card
+      columnStart="1"
+      columnEnd="-1"
+      backgroundColor={"lightgray"}
+    >
+      Footer
+    </Card>
+
+  </Grid>)
+}
+
+const NavBar = () => {
+  return (
+
+
+<Flex
+  direction="row"
+  justifyContent="center"
+  alignItems="center"
+  alignContent="center"
+  wrap="nowrap"
+  gap="2rem"
+>
+
+      <Link
+      href="https://ui.docs.amplify.aws/react/components/link"
+      color="#007EB9"
+      >
+      My Demo Link
+      </Link>
+
+      <Link
+      href="https://ui.docs.amplify.aws/react/components/link"
+      color="#007EB9"
+      >
+      My Demo Link
+      </Link>
+
+      
+      <Link
+      href="https://ui.docs.amplify.aws/react/components/link"
+      color="#007EB9"
+      >
+      My Demo Link
+      </Link>
+
+      
+      <Link
+      href="https://ui.docs.amplify.aws/react/components/link"
+      color="#007EB9"
+      >
+      My Demo Link
+      </Link>
+    </Flex>
+    
+ 
+  );
+};
+
+export default App;
